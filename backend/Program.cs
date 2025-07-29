@@ -1,3 +1,5 @@
+using backend.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,7 +7,28 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Add CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy => policy
+            .WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+    );
+});
+
+builder.Services.AddControllers();
+builder.Services.AddSingleton<TaskService>();
+
 var app = builder.Build();
+
+
+app.UseCors("AllowFrontend");
+
+app.UseAuthorization();
+app.MapControllers();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
