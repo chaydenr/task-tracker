@@ -1,0 +1,89 @@
+##################################
+# FRONTEND (React + Vite)
+##################################
+
+# Node dependencies and builds
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/.next/
+frontend/.cache/
+frontend/.env.local
+frontend/.env.*.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+
+# Logs
+frontend/logs/
+frontend/*.log
+
+# Editor settings
+frontend/.vscode/*
+!frontend/.vscode/extensions.json
+frontend/.idea/
+frontend/.DS_Store
+frontend/*.suo
+frontend/*.ntvs*
+frontend/*.njsproj
+frontend/*.sln
+frontend/*.sw?
+
+##################################
+# BACKEND (ASP.NET Core / C#)
+##################################
+
+# Build and publish outputs
+backend/bin/
+backend/obj/
+backend/.vs/
+backend/*.user
+backend/*.suo
+backend/*.csproj.user
+backend/*.dbmdl
+backend/*.pdb
+backend/Properties/launchSettings.json
+
+# Entity Framework / local data
+backend/Migrations/
+backend/*.sqlite
+backend/*.mdf
+backend/*.ldf
+
+# Secrets and local environment
+backend/secrets.json
+backend/appsettings.*.local.json
+backend/*.env
+
+# Logs
+backend/logs/
+backend/*.log
+
+##################################
+# SYSTEM / GLOBAL
+##################################
+
+.DS_Store
+Thumbs.db
+.env
+.env.*.local
+*.local
+*.log
+*.tmp
+.cache/
+logs/
+*.bak
+*.swp
+*.swo
+*.tmp
+*.pid
+*.seed
+
+##################################
+# GIT
+##################################
+
+# Ignore nested Git repos (e.g. accidentally initialized frontend)
+frontend/.git/
+backend/.git/
