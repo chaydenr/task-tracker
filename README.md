@@ -9,8 +9,9 @@ You'll need the **.NET 6+ SDK**, **Node.js v18** (or above), and **npm** install
 ---
 
 ### Backend Setup
+Open a terminal and run the following commands
 ```bash
-cd ../backend
+cd backend
 dotnet run --urls "http://localhost:5234"
 ```
 
@@ -18,7 +19,7 @@ dotnet run --urls "http://localhost:5234"
 - The API used for this application is located at [/tasks](http://localhost:5234/tasks)
 
 ### Frontend Setup
-
+Open a new terminal and run the following commands
 ```bash
 cd frontend
 npm install
@@ -30,4 +31,4 @@ npm run dev
 
 ---
 
-Once your backend and frontend are running, you're all set! 
+Once your backend and frontend are running simultaneously, you are all set to use the task manager. Here, you can add new tasks to your list, and mark them as completed when finished. 
