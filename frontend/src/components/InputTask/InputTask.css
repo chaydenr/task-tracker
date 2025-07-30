@@ -1,0 +1,40 @@
+/* Input Section at Bottom */
+.todo-input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.todo-input {
+  width: 100%;
+  background-color: #2C2C2C;
+  color: #FFFFFF;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.input-error {
+  background-color: #4E2A2A;
+  border: solid 1px red;
+
+}
+
+.todo-button {
+  background-color: #03DAC6;
+  color: #000000;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-left: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
+}
+
+.todo-button:hover {
+  background-color: #00BFA5;
+}

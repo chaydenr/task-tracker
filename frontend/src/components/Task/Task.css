@@ -1,0 +1,34 @@
+.task {
+  padding: 1rem;
+  background-color: #1e1e1e;
+  border-radius: 6px;
+  display: flex;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  flex-wrap: wrap; /* allow children to wrap */
+  word-break: break-word; /* break long words */
+  overflow-wrap: anywhere; /* break at any character if needed */
+}
+
+.task input[type="checkbox"] {
+  margin-right: 0.75rem;
+  cursor: pointer;
+}
+
+.task span {
+  font-size: 1rem;
+  color: #e0e0e0;
+  flex: 1; /* allow text to take remaining space */
+  white-space: pre-wrap; /* preserves spaces and allows wrap */
+  cursor: pointer;
+}
+
+.task:hover {
+  background-color: #2a2a2a;
+  cursor: pointer;
+}
+
+.task.completed span {
+  text-decoration: line-through;
+  color: #888888;
+}

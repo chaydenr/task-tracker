@@ -1,4 +1,4 @@
-import type { TaskItem } from "../App";
+import { type ITaskItem } from "../components/Task/Task.types";
 
 const BASE_URL = "http://localhost:5234/tasks";
 
@@ -16,7 +16,7 @@ export async function addTask(title: string) {
   return res.json();
 }
 
-export async function completeTask(id: number): Promise<TaskItem> {
+export async function completeTask(id: number): Promise<ITaskItem> {
   const res = await fetch(`${BASE_URL}/${id}/complete`, {
     method: "PUT",
   });

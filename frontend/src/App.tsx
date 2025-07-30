@@ -1,65 +1,36 @@
 import { useEffect, useState } from "react";
 import { fetchTasks, addTask, completeTask } from "./api/tasks";
+import "./App.css";
 
-export interface TaskItem {
-  id: number;
-  title: string;
-  isCompleted: boolean;
-}
+import TaskList from "./components/TaskList/TaskList";
+import AddTaskForm from "./components/InputTask/InputTask";
+import type { ITaskItem } from "./components/Task/Task.types";
 
 function App() {
-  const [tasks, setTasks] = useState<TaskItem[]>([]);
-  const [newTitle, setNewTitle] = useState("");
-  const [inputError, setInputError] = useState(false)
+  const [tasks, setTasks] = useState<ITaskItem[]>([]);
 
   useEffect(() => {
     fetchTasks()
     .then(data => setTasks(data));
   }, []);
 
-  const handleAdd = async () => {
-    // error handling for empty task
-    if (!newTitle.trim()) {
-      setInputError(true);
-      return;
-    };
-
-    // add valid input to task list, reset states
-    const task = await addTask(newTitle);
-    setTasks([...tasks, task]);
-    setNewTitle("");
-    setInputError(false);
+  const handleAdd = async (title: string) => {
+    const task = await addTask(title);
+    setTasks(previousState => [...previousState, task]);
   };
 
   const handleComplete = async (id: number) => {
-    const updated = await completeTask(id);
-    setTasks(tasks.map(t => t.id === id ? updated : t));
+    const updatedTask = await completeTask(id);
+    setTasks(previousState => previousState.map((task) => (task.id === id ? updatedTask : task)));
   };
-  
-  
 
   return (
-    <div>
-      <h1>Task List</h1>
-      <input
-        value={newTitle}
-        onChange={e => setNewTitle(e.target.value)}
-        placeholder="New task"
-        style={{backgroundColor: inputError ? "red" : ''}}
-      />
-      <button onClick={handleAdd}>Add</button>
-      <ul>
-        {tasks?.map(task => (
-          <li key={task.id}>
-            <span style={{ textDecoration: task.isCompleted ? "line-through" : "none" }}>
-              {task.title}
-            </span>
-            {!task.isCompleted ? (
-              <button onClick={() => handleComplete(task.id)}>Complete</button>
-            ) : <button onClick={() => handleComplete(task.id)}>Undo</button>}
-          </li>
-        ))}
-      </ul>
+    <div className="todo-container">
+      <div className="top-half">
+        <h1 className="todo-title">To Do List</h1>
+        <TaskList tasks={tasks} onToggle={handleComplete} />
+      </div>
+      <AddTaskForm onAdd={handleAdd} />
     </div>
   );
 }
