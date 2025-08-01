@@ -1,5 +1,6 @@
 namespace backend.Models
 {
+    // Given from project requirements
     public class TaskItem
     {
         public int Id { get; set; }

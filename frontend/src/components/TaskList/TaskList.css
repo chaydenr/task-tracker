@@ -3,9 +3,8 @@
   flex: 1;
   overflow-y: auto;
   margin-top: 1rem;
-  padding-right: 0.5rem; /* Optional scrollbar spacing */
+  padding-right: 0.5rem; /* Cleans up scrollbar from overlapping list */
 }
-
 
 .empty-list {
   display: flex;

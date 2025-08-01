@@ -8,6 +8,7 @@ namespace backend.Controllers
     [Route("tasks")]
     public class TasksController : ControllerBase
     {
+        // Use TaskService to handle task operations
         private readonly TaskService _taskService;
 
         public TasksController(TaskService taskService)
@@ -39,6 +40,18 @@ namespace backend.Controllers
 
             return Ok(updatedTask); // Return updated task for frontend
         }
-
+        
+        [HttpDelete("{id}")]
+        public ActionResult DeleteTask(int id)
+        {
+            var deleted = _taskService.Delete(id);
+            if (!deleted)
+            {
+                // If the task was not found, return 404
+                return NotFound();
+            }
+            // No content to return, just a success status
+            return NoContent();
+        }
     }
 }

@@ -7,4 +7,5 @@ export interface ITaskItem {
 export interface ITaskProps {
   task: ITaskItem;
   onToggle: (id: number) => void;
+  onDelete: (id: number) => void;
 }
