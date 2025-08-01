@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchTasks, addTask, completeTask } from "./api/tasks";
+import { fetchTasks, addTask, completeTask, deleteTask } from "./api/tasks";
 import "./App.css";
 
 import TaskList from "./components/TaskList/TaskList";
@@ -24,11 +24,20 @@ function App() {
     setTasks(previousState => previousState.map((task) => (task.id === id ? updatedTask : task)));
   };
 
+  const handleDelete = async (id: number) => {
+    try {
+      await deleteTask(id);
+      setTasks((prev) => prev.filter(task => task.id !== id));
+    } catch (error) {
+      console.error("Failed to delete task:", error);
+    }
+  };
+
   return (
     <div className="todo-container">
       <div className="top-half">
         <h1 className="todo-title">To Do List</h1>
-        <TaskList tasks={tasks} onToggle={handleComplete} />
+        <TaskList tasks={tasks} onToggle={handleComplete} onDelete={handleDelete} />
       </div>
       <AddTaskForm onAdd={handleAdd} />
     </div>

@@ -32,3 +32,22 @@
   text-decoration: line-through;
   color: #888888;
 }
+
+.delete-button {
+  background: none;
+  color: #bbb;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0 0.5rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.task:hover .delete-button {
+  opacity: 1;
+}
+
+.delete-button:hover {
+  color: #ff6b6b;
+}

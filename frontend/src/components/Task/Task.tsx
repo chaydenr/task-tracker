@@ -2,7 +2,7 @@ import React from "react";
 import "./Task.css"
 import { type ITaskProps } from './Task.types';
 
-export default function Task ({ task, onToggle }: ITaskProps) {
+export default function Task ({ task, onToggle, onDelete }: ITaskProps) {
   const handleClick = (e: React.MouseEvent) => {
     // Prevent double toggling when checkbox is clicked
     if ((e.target as HTMLElement).tagName === "INPUT") return;
@@ -21,6 +21,11 @@ export default function Task ({ task, onToggle }: ITaskProps) {
         onClick={(e) => e.stopPropagation()} // Prevent bubble to parent
       />
       <span>{task.title}</span>
+      <button className="delete-button" onClick={(e) => {
+        e.stopPropagation()
+        onDelete(task.id)}}>
+        Delete
+      </button>
     </div>
   );
 };

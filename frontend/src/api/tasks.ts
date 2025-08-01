@@ -13,6 +13,11 @@ export async function addTask(title: string) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ title }),
   });
+
+  if (!res.ok) {
+    throw new Error("Failed to add task");
+  }
+  
   return res.json();
 }
 
@@ -26,4 +31,14 @@ export async function completeTask(id: number): Promise<ITaskItem> {
   }
 
   return await res.json();
+}
+
+export async function deleteTask(id: number): Promise<void> {
+  const response = await fetch(`${BASE_URL}/${id}`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete task");
+  }
 }
