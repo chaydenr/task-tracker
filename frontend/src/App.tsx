@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchTasks, addTask, completeTask, deleteTask } from "./api/tasks";
+import { fetchTasks, addTask, completeTask, deleteTask, updateTask } from "./api/tasks";
 import "./App.css";
 
 import TaskList from "./components/TaskList/TaskList";
@@ -33,11 +33,22 @@ function App() {
     }
   };
 
+  const handleEdit = async (id: number, title: string) => {
+    try {
+      const updated = await updateTask(id, title);
+      setTasks((prev) =>
+        prev.map((task) => (task.id === id ? updated : task))
+      );
+    } catch (error) {
+      console.error("Failed to edit task:", error);
+    }
+  };
+
   return (
     <div className="todo-container">
       <div className="top-half">
         <h1 className="todo-title">To Do List</h1>
-        <TaskList tasks={tasks} onToggle={handleComplete} onDelete={handleDelete} />
+        <TaskList tasks={tasks} onToggle={handleComplete} onDelete={handleDelete} onEdit={handleEdit}/>
       </div>
       <AddTaskForm onAdd={handleAdd} />
     </div>

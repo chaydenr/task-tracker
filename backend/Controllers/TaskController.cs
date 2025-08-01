@@ -40,7 +40,7 @@ namespace backend.Controllers
 
             return Ok(updatedTask); // Return updated task for frontend
         }
-        
+
         [HttpDelete("{id}")]
         public ActionResult DeleteTask(int id)
         {
@@ -53,5 +53,20 @@ namespace backend.Controllers
             // No content to return, just a success status
             return NoContent();
         }
+        
+        [HttpPut("{id}")]
+        public ActionResult<TaskItem> UpdateTask(int id, [FromBody] TitleUpdateRequest request)
+        {
+            var task = _taskService.Update(id, request.Title);
+            if (task == null) return NotFound();
+
+            return Ok(task);
+        }
+
+        public class TitleUpdateRequest
+        {
+            required public string Title { get; set; }
+        }
+
     }
 }

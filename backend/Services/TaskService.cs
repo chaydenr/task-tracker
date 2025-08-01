@@ -46,5 +46,16 @@ namespace backend.Services
             return true;
         }
 
+        // Update a task's title by ID
+        // Returns the updated TaskItem or null if not found
+        public TaskItem? Update(int id, string newTitle)
+        {
+            var task = _tasks.FirstOrDefault(t => t.Id == id);
+            if (task == null) return null;
+
+            task.Title = newTitle;
+            return task;
+        }
+
     }
 }

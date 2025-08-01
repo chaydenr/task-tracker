@@ -1,30 +1,17 @@
 .task {
-  padding: 1rem;
-  background-color: #1e1e1e;
-  border-radius: 6px;
   display: flex;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  flex-wrap: wrap; /* allow children to wrap */
-  word-break: break-word; /* break long words */
-  overflow-wrap: anywhere; /* break at any character if needed */
-}
-
-.task input[type="checkbox"] {
-  margin-right: 0.75rem;
-  cursor: pointer;
-}
-
-.task span {
-  font-size: 1rem;
-  color: #e0e0e0;
-  flex: 1; /* allow text to take remaining space */
-  white-space: pre-wrap; /* preserves spaces and allows wrap */
-  cursor: pointer;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 6px;
+  min-height: 3rem; /* slightly taller */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .task:hover {
-  background-color: #2a2a2a;
+  background-color: #2f2f2f;
+  transition: background-color 0.2s;
   cursor: pointer;
 }
 
@@ -33,21 +20,74 @@
   color: #888888;
 }
 
-.delete-button {
-  background: none;
-  color: #bbb;
-  border: none;
-  font-size: 1rem;
+.task input[type="checkbox"] {
+  flex-shrink: 0;
+  margin-right: 0.5rem;
   cursor: pointer;
-  padding: 0 0.5rem;
-  opacity: 0;
-  transition: opacity 0.2s;
+  width: 1rem;
+  height: 1rem;
 }
 
-.task:hover .delete-button {
+.task-title {
+  flex-grow: 1;
+  font-size: 1rem;
+  margin: 0;
+  color: white;
+  display: flex;
+  align-items: center;
+  height: 2rem; /* slightly taller */
+}
+
+.task-edit-input {
+  flex-grow: 1;
+  font-size: 1rem;
+  margin: 0;
+  background-color: #3a3a3a;
+  border: none;
+  border-radius: 4px;
+  padding: 0 0.5rem;
+  color: white;
+  height: 2rem;
+  box-sizing: border-box;
+  outline: none;
+  line-height: 2rem;
+}
+
+/* Remove blue focus ring */
+.task-edit-input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.task-buttons {
+  display: flex;
+  gap: 0.25rem;
+  flex-shrink: 0;
+  align-items: center;
+  height: 2rem;
+}
+
+/* Shared button styles */
+.task button {
+  background: none;
+  border: none;
+  font-size: 0.95rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: color 0.2s, opacity 0.2s;
+  padding: 0 0.25rem;
+  color: #bbb;
+  height: 100%;
+}
+
+.task:hover button {
   opacity: 1;
 }
 
 .delete-button:hover {
   color: #ff6b6b;
+}
+
+.edit-button:hover {
+  color: #64b5f6;
 }
